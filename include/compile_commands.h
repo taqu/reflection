@@ -1,7 +1,7 @@
 #include <vector>
 #include <string>
 
-namespace ast
+namespace reflection
 {
     std::vector<std::string> get_args(const char* json_path);
 }

@@ -21,13 +21,13 @@ set_target_properties(LIBCLANG PROPERTIES IMPORTED_LOCATION_DEBUG "libclang.lib"
 ########################################################################
 # Sources
 set(HEADERS
-    "${HEADER_ROOT}/ast.h"
+    "${HEADER_ROOT}/reflection.h"
     "${HEADER_ROOT}/json.hpp"
     "${HEADER_ROOT}/compile_commands.h"
 )
 
 set(SOURCES
-    "${SOURCE_ROOT}/ast.cpp"
+    "${SOURCE_ROOT}/reflection.cpp"
     "${SOURCE_ROOT}/compile_commands.cpp"
     "${SOURCE_ROOT}/main.cpp"
 )

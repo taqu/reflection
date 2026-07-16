@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 
-namespace ast
+namespace reflection
 {
 using json = nlohmann::json;
 std::vector<std::string> get_args(const char* json_path)
@@ -21,23 +21,23 @@ std::vector<std::string> get_args(const char* json_path)
         if(entry.contains("file")) {
             std::string file_path = entry["file"].get<std::string>();
             if(!file_path.ends_with(".cpp")
-                && !file_path.ends_with(".cxx")
-                && !file_path.ends_with(".cc")){
+               && !file_path.ends_with(".cxx")
+               && !file_path.ends_with(".cc")) {
                 continue;
             }
             if(entry.contains("arguments")) {
                 bool prev_flag = false;
                 auto&& arguments = entry["arguments"];
-                for(size_t i=0; i<arguments.size(); ++i){
+                for(size_t i = 0; i < arguments.size(); ++i) {
                     std::string arg_str = arguments[i].get<std::string>();
-                    if(arg_str.starts_with("--driver-mode")){
+                    if(arg_str.starts_with("--driver-mode")) {
                         continue;
                     }
-                    if(arg_str.starts_with('/') || arg_str.starts_with('-')){
+                    if(arg_str.starts_with('/') || arg_str.starts_with('-')) {
                         prev_flag = true;
-                    }else if(!prev_flag){
+                    } else if(!prev_flag) {
                         continue;
-                    }else{
+                    } else {
                         prev_flag = false;
                     }
                     args_storage.push_back(arg_str);
@@ -48,4 +48,4 @@ std::vector<std::string> get_args(const char* json_path)
     }
     return args_storage;
 }
-} // namespace ast
+} // namespace reflection
